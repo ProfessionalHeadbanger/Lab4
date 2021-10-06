@@ -26,6 +26,7 @@ int main()
     if (N <= 0)
     {
         cout << "Введенный N не является натуральным числом" << endl;
+        return 0;
     }
     cout << "E: ";
     cin >> E;
