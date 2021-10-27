@@ -34,17 +34,17 @@ int main() {
     double g1 = x * x;
     double den1 = 2;
     double slag1 = 1;
-    int counter = 0;
     int step1 = 3;
+    double multi;
 
-    while (counter < N - 1)
+    for (int i = 0; i < N - 1; i++)
     {
-        sum1 = sum1 + slag1 * (1 / den1) * (x * g1 / (den1 + 1));
+        multi = slag1 * (1 / den1) * (x * g1 / (den1 + 1));
+        sum1 = sum1 + multi;
         slag1 *= (step1 / den1);
         g1 *= x * x;
         den1 += 2;
         step1 += 2;
-        counter++;
     }
 
     cout << "Первая сумма равна: " << sum1 << endl << endl;
@@ -55,15 +55,17 @@ int main() {
     double slag2 = 1;
     int step2 = 3;
     int slag_count1 = 0;
+    double multi2 = slag2 * (1 / den2) * (x * g2 / (den2 + 1));
 
-    while (abs(slag2 * (1 / den2) * (x * g2 / (den2 + 1))) > E)
+    while (abs(multi2) > E)
     {
-        sum2 = sum2 + slag2 * (1 / den2) * (x * g2 / (den2 + 1));
+        sum2 = sum2 + multi2;
         slag2 *= (step2 / den2);
         g2 *= x * x;
         den2 += 2;
         step2 += 2;
         slag_count1++;
+        multi2 = slag2 * (1 / den2) * (x * g2 / (den2 + 1));
     }
 
     cout << "Вторая сумма равна: " << sum2 << endl;
@@ -75,34 +77,22 @@ int main() {
     double slag3 = 1;
     int step3 = 3;
     int slag_count2 = 0;
+    double multi3 = slag3 * (1 / den3) * (x * g3 / (den3 + 1));
 
-    while (abs(slag3 * (1 / den3) * (x * g3 / (den3 + 1))) > E1)
+    while (abs(multi3) > E1)
     {
-        sum3 = sum3 + slag3 * (1 / den3) * (x * g3 / (den3 + 1));
+        sum3 = sum3 + multi3;
         slag3 *= (step3 / den3);
         g3 *= x * x;
         den3 += 2;
         step3 += 2;
         slag_count2++;
+        multi3 = slag3 * (1 / den3) * (x * g3 / (den3 + 1));
     }
 
     cout << "Третья сумма равна: " << sum3 << endl;
     cout << "Количество слагаемых: " << slag_count2+1 << endl << endl;
 
     double arcsin_x = asin(x);
-    cout << "Точное значение функции arcsin(x): " << arcsin_x << endl << endl;
-
-    cout << "Наиболее близким результатом к arcsin(x) является сумма: ";
-    if ((abs(sum1 - arcsin_x) < abs(sum2 - arcsin_x)) && (abs(sum1 - arcsin_x) < abs(sum3 - arcsin_x)))
-    {
-        cout << "первая" << endl;
-    }
-    if ((abs(sum2 - arcsin_x) < abs(sum1 - arcsin_x)) && (abs(sum2 - arcsin_x) < abs(sum3 - arcsin_x)))
-    {
-        cout << "вторая" << endl;
-    }
-    if ((abs(sum3 - arcsin_x) < abs(sum2 - arcsin_x)) && (abs(sum3 - arcsin_x) < abs(sum1 - arcsin_x)))
-    {
-        cout << "третья" << endl;
-    }
+    cout << "Точное значение функции arcsin(x): " << arcsin_x << endl;
 }
